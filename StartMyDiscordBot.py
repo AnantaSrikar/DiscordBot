@@ -103,3 +103,4 @@ async def on_message(message):
     await bot.process_commands(message)
 
 bot.run(tokens[2])
+#nothing will run after this command ;)
