@@ -83,7 +83,6 @@ async def helpHim(ctx):
 
 @bot.command()
 async def send_message(ctx, *, message : str):
-    print('In the echo')
     await ctx.channel.send(message)
 
 @bot.command(name = 'weatherUpdate')
@@ -103,6 +102,9 @@ async def on_message(message):
     
     elif (message.content.lower().startswith('gn')):
         await message.channel.send("Good Night " + message.author.mention)
+    
+    elif (message.content.lower().startswith('ok boomer')):
+        await message.channel.send(file = discord.File('res/ok_boomer.jpg'))
     await bot.process_commands(message)
 
 bot.run(tokens[2])
