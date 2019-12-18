@@ -10,6 +10,8 @@ import requests
 
 tokens = []
 
+#owner id = 605674719731253263
+
 def getTokens():
     fileManager = open('res/TOKENS.txt', 'r')  #make the file in such a way that token[0] is for news, token[1] for weather, token[2] for bot
     tokenText = fileManager.read()
@@ -76,10 +78,12 @@ async def ping(ctx):
 
 @bot.command(name = 'wth?')
 async def helpHim(ctx):
-    fileManager = open('res/bot_intro.txt', 'r')
-    bot_intro = fileManager.read()
-    await ctx.channel.send(bot_intro)
-    fileManager.close()
+    async with ctx.channel.typing():
+        fileManager = open('res/bot_intro.txt', 'r')
+        bot_intro = fileManager.read()
+        fileManager.close()
+        await ctx.channel.send(bot_intro)
+    
 
 @bot.command()
 async def send_message(ctx, *, message : str):
@@ -92,12 +96,20 @@ async def send_weather(ctx):
 
 @bot.command(name = 'newsUpdate')
 async def send_news(ctx):
-    await ctx.channel.send(NewsFromBBC())
+    async with ctx.channel.typing():
+        await ctx.channel.send(NewsFromBBC())
+
+@bot.command(name = 'members')
+async def send_members_list(ctx):
+    members = ctx.channel.members
+    async with ctx.channel.typing():
+        for i in range (0, len(members)):
+            await ctx.channel.send(members[i].mention)
 
 @bot.event
 async def on_message(message):
     
-    if (message.content.lower().startswith('hi') or message.content.lower().startswith('hey')) :
+    if (message.content.lower().startswith('hi') or message.content.lower().startswith('hey') and message.author != bot.self) :
         await message.channel.send("Wassup " + message.author.mention)   # never directly do message.channel.send() as it will go to infinity loop
     
     elif (message.content.lower().startswith('gn')):
@@ -105,6 +117,7 @@ async def on_message(message):
     
     elif (message.content.lower().startswith('ok boomer')):
         await message.channel.send(file = discord.File('res/ok_boomer.jpg'))
+        print(message.author.id)
     await bot.process_commands(message)
 
 bot.run(tokens[2])
