@@ -1,5 +1,5 @@
 # DiscordBot
-Made using [discord.py](https://pypi.org/project/discord.py/)
+Made using [discord.py](https://pypi.org/project/discord.py/). Hostel on my Raspberry Pi 4.
 
 # Functions
 * ```>start``` - To check if the bot is still awake
