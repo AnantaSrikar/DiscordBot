@@ -76,7 +76,10 @@ async def ping(ctx):
 
 @bot.command(name = 'wth?')
 async def helpHim(ctx):
-    await ctx.channel.send("ALPHA = SOME FEATURES MAY NO WORK!\n>start - to check if I'm awake")
+    fileManager = open('res/bot_intro.txt', 'r')
+    bot_intro = fileManager.read()
+    await ctx.channel.send(bot_intro)
+    fileManager.close()
 
 @bot.command()
 async def send_message(ctx, *, message : str):
