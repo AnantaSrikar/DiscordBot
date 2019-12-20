@@ -21,7 +21,7 @@ def getTokens():
 def NewsFromBBC(): 
 
     # BBC news api 
-    main_url = " https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey={}".format(tokens[0])
+    main_url = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey={}".format(tokens[0])
   
     # fetching data in json format 
     open_bbc_page = requests.get(main_url).json() 
@@ -36,6 +36,28 @@ def NewsFromBBC():
     data = ''
       
     for ar in article: 
+        results.append(ar['title']) 
+          
+    for i in range(len(results)): 
+          
+        # printing all trending news 
+        #print(i + 1, results[i])
+        data = data + str(i+1) + ') ' + str(results[i]) + '\n'
+    
+    return data
+
+def indianNews():
+    
+    main_url = "https://newsapi.org/v2/top-headlines?country=in&apiKey={}".format(tokens[0])
+
+    news = requests.get(main_url).json()
+
+    articles = news["articles"]
+
+    results = [] 
+    data = ''
+      
+    for ar in articles: 
         results.append(ar['title']) 
           
     for i in range(len(results)): 
@@ -94,11 +116,15 @@ async def send_weather(ctx):
     city = ctx.message.content[15:]
     await ctx.channel.send(return_weather(city))
 
-@bot.command(name = 'newsUpdate')
-async def send_news(ctx):
+@bot.command(name = 'intNews')
+async def send_int_news(ctx):
     async with ctx.channel.typing():
         await ctx.channel.send(NewsFromBBC())
 
+@bot.command(name = 'indNews')
+async def send_ind_news(ctx):
+    async with ctx.channel.typing():
+        await ctx.channel.send(indianNews)
 @bot.command(name = 'members')
 async def send_members_list(ctx):
     members = ctx.channel.members
