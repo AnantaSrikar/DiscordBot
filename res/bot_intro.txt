@@ -1,6 +1,7 @@
 ALPHA = FEATURES MAY NOT WORK
->weatherUpdate cityName: Current weather in any city!
->intNews: Top International News
->indNews: Top Indian News
+```>weatherUpdate cityName```: Current weather in any city!
+```>intNews```: Top International News
+```>indNews```: Top Indian News
+```>members```: Get members of current server
 Any Suggestions, contact Srikar
 Bot by Srikar
