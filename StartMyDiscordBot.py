@@ -88,6 +88,7 @@ def return_weather(city):
 
 getTokens()
 bot = commands.Bot(command_prefix='>')
+bot.remove_command("help")
 
 @bot.event
 async def on_ready():
@@ -98,7 +99,7 @@ async def on_ready():
 async def ping(ctx):
     await ctx.channel.send("Hey " + ctx.message.author.mention + ". I'm still awake btw....")
 
-@bot.command(name = 'wth?')
+@bot.command(name = 'help')
 async def helpHim(ctx):
     async with ctx.channel.typing():
         fileManager = open('res/bot_intro.txt', 'r')
