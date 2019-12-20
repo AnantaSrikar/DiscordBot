@@ -52,12 +52,12 @@ def indianNews():
 
     news = requests.get(main_url).json()
 
-    articles = news["articles"]
+    article = news["articles"]
 
     results = [] 
     data = ''
       
-    for ar in articles: 
+    for ar in article: 
         results.append(ar['title']) 
           
     for i in range(len(results)): 
@@ -124,7 +124,7 @@ async def send_int_news(ctx):
 @bot.command(name = 'indNews')
 async def send_ind_news(ctx):
     async with ctx.channel.typing():
-        await ctx.channel.send(indianNews)
+        await ctx.channel.send(indianNews())
 @bot.command(name = 'members')
 async def send_members_list(ctx):
     members = ctx.channel.members
