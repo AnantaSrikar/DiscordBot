@@ -135,7 +135,7 @@ async def send_members_list(ctx):
 @bot.event
 async def on_message(message):
     
-    if ((message.content.lower().startswith('hi') or message.content.lower().startswith('hey')) and message.author != bot.user) :
+    if ((message.content.lower().startswith('hi') or message.content.lower().startswith('hey') or message.content.lower().startswith('sup')) and message.author != bot.user) :
         await message.channel.send("Wassup " + message.author.mention)   # never directly do message.channel.send() as it will go to infinity loop
     
     elif (message.content.lower().startswith('gn')):
