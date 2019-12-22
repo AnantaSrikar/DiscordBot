@@ -12,5 +12,6 @@ Made using [discord.py](https://pypi.org/project/discord.py/). Hosted on my Rasp
 * `>ban  @mention reason` - Ban the mentioned user
 Also wishes good night, and replies back when you initiate chat like "Hey" or "Hi"
 
-Also has some small Easter eggs (try sending ok boomer) \n
+Also has some small Easter eggs (try sending ok boomer) 
+
 Note : `You need to have the required permissions in the channel for kick or ban to work`
