@@ -8,6 +8,7 @@ Made using [discord.py](https://pypi.org/project/discord.py/). Hosted on my Rasp
 * `>intNews` - Gives global news
 * `>indNews` - Gives Indian news
 * `>members` - Get members of current server
+* `>admins`  - Get admins of current server
 * `>kick @mention reason` - Kick the mentioned member
 * `>ban  @mention reason` - Ban the mentioned user
 Also wishes good night, and replies back when you initiate chat like "Hey" or "Hi"
