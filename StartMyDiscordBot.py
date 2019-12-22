@@ -136,9 +136,10 @@ async def send_members_list(ctx):
 
 @bot.command(name = 'admins')
 async def send_admins_list(ctx):
-    for i in range (0, len(ctx.channel.members)):
-        if (ctx.channel.permissions_for(ctx.channel.members[i]).administrator):
-            await ctx.channel.send(ctx.channel.members[i].mention)
+    async with ctx.channel.typing():
+        for i in range (0, len(ctx.channel.members)):
+            if (ctx.channel.permissions_for(ctx.channel.members[i]).administrator):
+                await ctx.channel.send(ctx.channel.members[i].mention)
 
 @bot.command(name = 'ban')
 @has_permissions(ban_members = True)
