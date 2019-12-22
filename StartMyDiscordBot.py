@@ -6,6 +6,7 @@ Created on Sat Nov 30 19:44:55 2019
 """
 import discord
 from discord.ext import commands
+from discord.ext.commands import has_permissions, CheckFailure, BadArgument
 import requests
 
 tokens = []
@@ -133,6 +134,50 @@ async def send_members_list(ctx):
         for i in range (0, len(members)):
             await ctx.channel.send(members[i].mention)
 
+@bot.command(name = 'ban')
+@has_permissions(ban_members = True)
+async def ban_member(ctx, target : discord.Member, *, reason = None):
+    if (ctx.channel.permissions_for(target) == discord.Permissions.administrator):
+        await ctx.channel.send("Sorry, " + target.mention + " is an Admin")
+    else:
+        try:
+            await target.ban(reason = reason)
+            await ctx.channel.send("Banned" + target.mention)
+        
+        except:
+            await ctx.channel.send("Something went wrong")
+
+@ban_member.error
+async def ban_error(ctx, error):
+    if isinstance(error, CheckFailure):
+        await ctx.channel.send("You do not have permissions to ban members")
+    elif isinstance(error, BadArgument):
+        await ctx.channel.send("Could not identify target")
+    else:
+        raise error
+
+@bot.command(name = 'kick')
+@has_permissions(kick_members = True)
+async def kick_member(ctx, target : discord.Member, *, reason = None):
+    if (ctx.channel.permissions_for(target) == discord.Permissions.administrator):
+        await ctx.channel.send("Sorry, " + target.mention + " is an Admin")
+    else:
+        try:
+            await target.ban(reason = reason)
+            await ctx.channel.send("Kicked " + target.mention)
+        
+        except:
+            await ctx.channel.send("Something went wrong")
+
+@kick_member.error
+async def kick_error(ctx, error):
+    if isinstance(error, CheckFailure):
+        await ctx.channel.send("You do not have permissions to kick members")
+    elif isinstance(error, BadArgument):
+        await ctx.channel.send("Could not identify target")
+    else:
+        raise error
+
 @bot.event
 async def on_message(message):
     
@@ -149,3 +194,5 @@ async def on_message(message):
 
 bot.run(tokens[2])
 #nothing will run after this command ;)
+
+#members in grp : member_count
