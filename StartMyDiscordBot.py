@@ -6,7 +6,7 @@ Created on Sat Nov 30 19:44:55 2019
 """
 import discord
 from discord.ext import commands
-from discord.ext.commands import has_permissions, CheckFailure, BadArgument
+from discord.ext.commands import has_permissions, CheckFailure, BadArgument, CommandNotFound
 import requests
 
 tokens = []
@@ -40,9 +40,6 @@ def NewsFromBBC():
         results.append(ar['title']) 
           
     for i in range(len(results)): 
-          
-        # printing all trending news 
-        #print(i + 1, results[i])
         data = data + str(i+1) + ') ' + str(results[i]) + '\n'
     
     return data
@@ -62,9 +59,6 @@ def indianNews():
         results.append(ar['title']) 
           
     for i in range(len(results)): 
-          
-        # printing all trending news 
-        #print(i + 1, results[i])
         data = data + str(i+1) + ') ' + str(results[i]) + '\n'
     
     return data
@@ -198,6 +192,11 @@ async def on_message(message):
         await message.channel.send(file = discord.File('res/ok_boomer.jpg'))
         print(message.author.id)
     await bot.process_commands(message)
+
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, CommandNotFound):
+        await ctx.channel.send("Sorry " + ctx.message.author.mention + "! I still don't know that command 😞\nTry `>help` to see what I can do.")
 
 bot.run(tokens[2])
 #nothing will run after this command ;)
