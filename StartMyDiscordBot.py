@@ -118,7 +118,7 @@ async def send_ind_news(ctx):
 @bot.command(name = 'members')
 async def send_members_list(ctx):
     members = ctx.channel.members
-    memberText = ''
+    memberText = 'There are {} members in {}.\nThey are :\n'.format(len(members), ctx.guild.name)
     async with ctx.channel.typing():
         for i in range (0, len(members)):
             memberText += members[i].mention + '\n'
