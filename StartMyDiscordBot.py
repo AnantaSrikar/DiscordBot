@@ -187,6 +187,9 @@ async def on_message(message):
     elif (message.content.lower().startswith('ok boomer')):
         await message.channel.send(file = discord.File('res/ok_boomer.jpg'))
 
+    elif ('bot' in message.content.lower()):
+        await message.channel.send("Hey {}! U wanna talk to me?".format(message.author.mention))
+
     await bot.process_commands(message)
 
 @bot.event
