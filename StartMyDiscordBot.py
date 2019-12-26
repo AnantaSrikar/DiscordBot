@@ -202,5 +202,4 @@ async def on_command_error(ctx, error):
 bot.run(tokens[2])
 #nothing will run after this command ;)
 
-# TODO : members in grp : member_count
 # TODO : set_permissions()
