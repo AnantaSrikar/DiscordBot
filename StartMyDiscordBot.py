@@ -118,9 +118,11 @@ async def send_ind_news(ctx):
 @bot.command(name = 'members')
 async def send_members_list(ctx):
     members = ctx.channel.members
+    memberText = ''
     async with ctx.channel.typing():
         for i in range (0, len(members)):
-            await ctx.channel.send(members[i].mention)
+            memberText += members[i].mention + '\n'
+        await ctx.channel.send(memberText)
 
 @bot.command(name = 'admins')
 async def send_admins_list(ctx):
