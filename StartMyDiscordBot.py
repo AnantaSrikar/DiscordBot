@@ -192,7 +192,7 @@ async def on_message(message):
     
     elif (message.content.lower().startswith('ok boomer')):
         await message.channel.send(file = discord.File('res/ok_boomer.jpg'))
-        print(message.author.id)
+        
     await bot.process_commands(message)
 
 @bot.event
