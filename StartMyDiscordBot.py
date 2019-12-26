@@ -21,18 +21,12 @@ def getTokens():
 
 def NewsFromBBC(): 
 
-    # BBC news api 
     main_url = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey={}".format(tokens[0])
-  
-    # fetching data in json format 
+ 
     open_bbc_page = requests.get(main_url).json() 
-  
-    # getting all articles in a string article 
+ 
     article = open_bbc_page["articles"] 
 
-  
-    # empty list which will  
-    # contain all trending news 
     results = [] 
     data = ''
       
@@ -192,7 +186,7 @@ async def on_message(message):
     
     elif (message.content.lower().startswith('ok boomer')):
         await message.channel.send(file = discord.File('res/ok_boomer.jpg'))
-        
+
     await bot.process_commands(message)
 
 @bot.event
