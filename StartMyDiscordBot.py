@@ -199,6 +199,10 @@ async def on_message(message):
     await bot.process_commands(message)
 
 @bot.event
+async def on_member_remove(member):
+    await member.guild.channel.send("{} has left {}".format(member.mention, member.guild.name))
+
+@bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, CommandNotFound):
         await ctx.channel.send("Sorry " + ctx.message.author.mention + "! I still don't know that command 😞\nTry `>help` to see what I can do.")
