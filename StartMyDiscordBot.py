@@ -137,11 +137,6 @@ async def send_admins_list(ctx):
 async def dm_user(ctx, member : discord.User,*, msg = 'Hi'):
     await member.send(msg)
 
-@bot.command(name = 'fr')
-async def send_fr(ctx, member = discord.User):
-    print("In the funcction")
-    print(type(await member.send_friend_request()))
-
 @bot.command(name = 'ban')
 @has_permissions(ban_members = True)
 async def ban_member(ctx, target : discord.Member, *, reason = None):
