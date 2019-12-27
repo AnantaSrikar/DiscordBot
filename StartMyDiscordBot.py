@@ -133,6 +133,10 @@ async def send_admins_list(ctx):
                 adminsText += ctx.channel.members[i].mention + '\n'
         await ctx.channel.send(adminsText)
 
+@bot.command(name = 'dm')
+async def dm_user(ctx, member : discord.User,*, msg = 'Hi'):
+    await member.send(msg)
+
 @bot.command(name = 'ban')
 @has_permissions(ban_members = True)
 async def ban_member(ctx, target : discord.Member, *, reason = None):
