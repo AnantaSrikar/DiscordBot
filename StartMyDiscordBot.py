@@ -200,7 +200,7 @@ async def on_message(message):
 
 @bot.event
 async def on_member_remove(member):
-    await member.guild.channel.send("{} has left {}".format(member.mention, member.guild.name))
+    await member.guild.system_channel.send("{} has left {}".format(member.mention, member.guild.name))
 
 @bot.event
 async def on_command_error(ctx, error):
