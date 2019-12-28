@@ -6,6 +6,7 @@ ALPHA = FEATURES MAY NOT WORK
 `>admins`  : Get admins of current server
 `>kick @mention reason` : Kick the mentioned user
 `>ban @mention reason` : Ban the mentioned user
-`Note : You need to have permissions in the channel for ban or kick to work`
+Notifies member leaving server
+Note : `You need to have permissions in the channel for ban or kick to work`
 Any Suggestions, contact Srikar
 Bot by Srikar
