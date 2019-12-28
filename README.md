@@ -12,7 +12,9 @@ Made using [discord.py](https://pypi.org/project/discord.py/). Hosted on my Rasp
 * `>kick @mention reason` - Kick the mentioned member
 * `>ban  @mention reason` - Ban the mentioned user
 
-Also wishes good night, and replies back when you initiate chat like "Hey" or "Hi"
+Notifies user leaving server.
+
+Wishes good night, and replies back when you initiate chat like "Hey" or "Hi"
 
 Also has some small Easter eggs (try sending ok boomer) 😉
 
