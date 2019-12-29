@@ -11,7 +11,7 @@ import requests
 
 tokens = []
 
-#owner id = 605674719731253263
+owner_id = 605674719731253263
 
 def getTokens():
     fileManager = open('res/TOKENS.txt', 'r')  #make the file in such a way that token[0] is for news, token[1] for weather, token[2] for bot
@@ -191,6 +191,10 @@ async def on_message(message):
 
     elif ('bot' in message.content.lower()):
         await message.channel.send("Hey {}! U wanna talk to me?".format(message.author.mention))
+    
+    if(message.author.id == owner_id):
+        user = bot.get_user(owner_id)
+        #print('Message sent by owner')
 
     await bot.process_commands(message)
 
