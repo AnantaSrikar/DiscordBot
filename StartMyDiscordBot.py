@@ -93,6 +93,7 @@ async def helpHim(ctx):
     async with ctx.channel.typing():
         fileManager = open('res/bot_intro.txt', 'r')
         bot_intro = fileManager.read()
+        bot_intro = bot_intro.replace('Srikar', '<@605674719731253263>')
         fileManager.close()
         await ctx.channel.send(bot_intro)
 
