@@ -183,13 +183,13 @@ async def on_message(message):
     if ((message.content.lower().startswith('hi') or message.content.lower().startswith('hey') or message.content.lower().startswith('sup')) and message.author != bot.user) :
         await message.channel.send("Wassup " + message.author.mention)   # never directly do message.channel.send() as it will go to infinity loop
     
-    elif (message.content.lower().startswith('gn')):
+    elif ((message.content.lower().startswith('gn') or 'good night' in message.content.lower()) and message.author != bot.user):
         await message.channel.send("Good Night " + message.author.mention)
     
     elif (message.content.lower().startswith('ok boomer')):
         await message.channel.send(file = discord.File('res/ok_boomer.jpg'))
 
-    elif ('bot' in message.content.lower()):
+    elif ('bot' in message.content.lower() and message.author != bot.user):
         await message.channel.send("Hey {}! U wanna talk to me?".format(message.author.mention))
     
     if(message.author.id == owner_id):
