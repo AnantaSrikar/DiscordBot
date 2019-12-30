@@ -193,6 +193,9 @@ async def on_message(message):
     elif ('bot' in message.content.lower() and message.author != bot.user):
         await message.channel.send("Hey {}! U wanna talk to me?".format(message.author.mention))
     
+    elif ('bye' in message.content.lower() and message.author != bot.user):
+        await message.channel.send('Goodbye {}'.format(message.author.mention))
+    
     if(message.author.id == owner_id):
         user = bot.get_user(owner_id)
         #print('Message sent by owner') do something that u want with bot owner
@@ -212,3 +215,4 @@ bot.run(tokens[2])
 #nothing will run after this command ;)
 
 # TODO : set_permissions()
+# TODO : discord.AppInfo.owner
