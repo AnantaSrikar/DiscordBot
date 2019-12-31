@@ -4,6 +4,7 @@ ALPHA = FEATURES MAY NOT WORK
 `>indNews` : Top Indian News
 `>members` : Get members of current server
 `>admins`  : Get admins of current server
+`>owner`   : Get my owner
 `>kick @mention reason` : Kick the mentioned user
 `>ban @mention reason` : Ban the mentioned user
 Notifies member leaving server
