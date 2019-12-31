@@ -206,6 +206,7 @@ async def on_message(message):
 
     if(message.author == owner):
         #print('My owner has sen a message!') ---> do something which owner only has access to
+        pass
     
     await bot.process_commands(message)
 
