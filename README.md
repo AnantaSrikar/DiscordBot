@@ -1,5 +1,5 @@
 # DiscordBot
-Made using [discord.py](https://pypi.org/project/discord.py/) API. Hosted on my Raspberry Pi 4.
+Made using [discord.py](https://pypi.org/project/discord.py/) API. Still in development, Hosted on my Raspberry Pi 4.
 
 # Functions
 * `>start` - To check if the bot is still awake
