@@ -12,6 +12,7 @@ import requests
 tokens = []
 
 owner_id = 605674719731253263
+owner = discord.user.User
 
 def getTokens():
     fileManager = open('res/TOKENS.txt', 'r')  #make the file in such a way that token[0] is for news, token[1] for weather, token[2] for bot
@@ -80,9 +81,14 @@ bot = commands.Bot(command_prefix='>')
 bot.remove_command("help")
 
 @bot.event
-async def on_ready():
-	print ("\nLogged in as:\t" + str(bot.user))
-	print ("-----------------")
+async def on_ready():  
+    print("\nLogged in as:\t{}".format(str(bot.user)))
+    print("------------------")
+
+    if(not hasattr(bot, 'appInfo')):
+        bot.appInfo = await bot.application_info()    
+        global owner
+        owner = bot.appInfo.owner
 
 @bot.command(name = 'start')
 async def ping(ctx):
@@ -195,12 +201,10 @@ async def on_message(message):
     
     elif ('bye' in message.content.lower() and message.author != bot.user):
         await message.channel.send('Goodbye {}'.format(message.author.mention))
-    
-    if(message.author.id == owner_id):
-        user = bot.get_user(owner_id)
-        print(discord.AppInfo.owner)
-        #print('Message sent by owner') do something that u want with bot owner
 
+    if(message.author == owner):
+        print('My owner has sen a message!')
+    
     await bot.process_commands(message)
 
 @bot.event
