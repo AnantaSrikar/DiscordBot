@@ -198,6 +198,7 @@ async def on_message(message):
     
     if(message.author.id == owner_id):
         user = bot.get_user(owner_id)
+        print(discord.AppInfo.owner)
         #print('Message sent by owner') do something that u want with bot owner
 
     await bot.process_commands(message)
