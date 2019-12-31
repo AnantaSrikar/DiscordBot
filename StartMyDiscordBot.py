@@ -77,6 +77,8 @@ def return_weather(city):
     return data
 
 getTokens()
+maker_mention = tokens[3]  #for mentioning ones own self, get the mention sting. Ex : <@605674719731253263>
+
 bot = commands.Bot(command_prefix='>')
 bot.remove_command("help")
 
@@ -99,7 +101,7 @@ async def helpHim(ctx):
     async with ctx.channel.typing():
         fileManager = open('res/bot_intro.txt', 'r')
         bot_intro = fileManager.read()
-        bot_intro = bot_intro.replace('Srikar', '<@605674719731253263>')
+        bot_intro = bot_intro.replace('Srikar', maker_mention)
         fileManager.close()
         await ctx.channel.send(bot_intro)
 
@@ -203,7 +205,7 @@ async def on_message(message):
         await message.channel.send('Goodbye {}'.format(message.author.mention))
 
     if(message.author == owner):
-        print('My owner has sen a message!')
+        #print('My owner has sen a message!') ---> do something which owner only has access to
     
     await bot.process_commands(message)
 
@@ -220,4 +222,3 @@ bot.run(tokens[2])
 #nothing will run after this command ;)
 
 # TODO : set_permissions()
-# TODO : discord.AppInfo.owner
