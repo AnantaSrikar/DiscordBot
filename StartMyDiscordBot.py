@@ -142,6 +142,10 @@ async def send_admins_list(ctx):
                 adminsText += ctx.channel.members[i].mention + '\n'
         await ctx.channel.send(adminsText)
 
+@bot.command(name = 'owner')
+async def send_owner(ctx):
+    await ctx.channel.send('{} owns me. Literally!'.format(owner.mention))
+
 @bot.command(name = 'ban')
 @has_permissions(ban_members = True)
 async def ban_member(ctx, target : discord.Member, *, reason = None):
@@ -206,7 +210,7 @@ async def on_message(message):
 
     if(message.author == owner):
         #print('My owner has sen a message!') ---> do something which owner only has access to
-        pass
+        pass # don't forget to remove this after adding a function
     
     await bot.process_commands(message)
 
