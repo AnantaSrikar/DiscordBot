@@ -1,5 +1,5 @@
 # DiscordBot
-Made using [discord.py](https://pypi.org/project/discord.py/). Hosted on my Raspberry Pi 4.
+Made using [discord.py](https://pypi.org/project/discord.py/) API. Hosted on my Raspberry Pi 4.
 
 # Functions
 * `>start` - To check if the bot is still awake
@@ -9,7 +9,7 @@ Made using [discord.py](https://pypi.org/project/discord.py/). Hosted on my Rasp
 * `>indNews` - Gives Indian news
 * `>members` - Get members of current server
 * `>admins`  - Get admins of current server
-* `>owner`   - Get owner of the bot
+* `>owner`   - Get the owner of the bot
 * `>kick @mention reason` - Kick the mentioned member
 * `>ban  @mention reason` - Ban the mentioned user
 
@@ -20,3 +20,9 @@ Wishes good night, and replies back when you initiate chat like "Hey" or "Hi"
 Also has some small Easter eggs (try sending ok boomer) 😉
 
 Note : `You need to have the required permissions in the channel for kick or ban to work`
+
+#APIs
+Below are the list of APIs used in the discord bot:
+* [discord.py]((https://pypi.org/project/discord.py/) - The main API for the bot
+* [News API](https://newsapi.org/) - API for latest news
+* [OpenWeather](https://openweathermap.org/api) - API for latest weather
