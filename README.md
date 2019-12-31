@@ -21,8 +21,8 @@ Also has some small Easter eggs (try sending ok boomer) 😉
 
 Note : `You need to have the required permissions in the channel for kick or ban to work`
 
-#APIs
+# APIs
 Below are the list of APIs used in the discord bot:
-* [discord.py]((https://pypi.org/project/discord.py/) - The main API for the bot
+* [discord.py](https://pypi.org/project/discord.py/) - The main API for the bot
 * [News API](https://newsapi.org/) - API for latest news
 * [OpenWeather](https://openweathermap.org/api) - API for latest weather
