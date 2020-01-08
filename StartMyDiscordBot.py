@@ -228,4 +228,4 @@ bot.run(tokens[2])
 
 # TODO : set_permissions()
 # TODO : add timed messages when nobody is chatting
-# TODO : add remider when nobody is chatting
+# TODO : mute members on a channel
