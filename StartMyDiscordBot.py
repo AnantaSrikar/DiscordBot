@@ -94,7 +94,7 @@ async def on_ready():
 
 @bot.command(name = 'start')
 async def ping(ctx):
-    await ctx.channel.send("Hey " + ctx.message.author.mention + ". I'm still awake btw....")
+    await ctx.channel.send("Hey {} . I'm still awake btw....".format(ctx.message.author.mention) )
 
 @bot.command(name = 'help')
 async def helpHim(ctx):
@@ -150,11 +150,11 @@ async def send_owner(ctx):
 @has_permissions(ban_members = True)
 async def ban_member(ctx, target : discord.Member, *, reason = None):
     if (ctx.channel.permissions_for(target).administrator):
-        await ctx.channel.send("Sorry, " + target.mention + " is an Admin")
+        await ctx.channel.send("Sorry, {} is an Admin".format(target.mention))
     else:
         try:
             await target.ban(reason = reason)
-            await ctx.channel.send("Banned" + target.mention)
+            await ctx.channel.send("Banned {}".format(target.mention))
         
         except:
             await ctx.channel.send("Something went wrong")
@@ -172,11 +172,11 @@ async def ban_error(ctx, error):
 @has_permissions(kick_members = True)
 async def kick_member(ctx, target : discord.Member, *, reason = None):
     if (ctx.channel.permissions_for(target).administrator):
-        await ctx.channel.send("Sorry, " + target.mention + " is an Admin")
+        await ctx.channel.send("Sorry, {} is an Admin".format(target.mention) )
     else:
         try:
             await target.ban(reason = reason)
-            await ctx.channel.send("Kicked " + target.mention)
+            await ctx.channel.send("Banned {}".format(target.mention) )
         
         except:
             await ctx.channel.send("Something went wrong")
@@ -194,13 +194,13 @@ async def kick_error(ctx, error):
 async def on_message(message):
     
     if ((message.content.lower().startswith('hi') or message.content.lower().startswith('hey') or message.content.lower().startswith('sup')) and message.author != bot.user) :
-        await message.channel.send("Wassup " + message.author.mention)   # never directly do message.channel.send() as it will go to infinity loop
+        await message.channel.send("Wassup {}".format(message.author.mention) )   # never directly do message.channel.send() as it will go to infinity loop
     
     elif ((message.content.lower().startswith('gn') or 'good night' in message.content.lower()) and message.author != bot.user):
-        await message.channel.send("Good Night " + message.author.mention)
+        await message.channel.send("Good Night {}".format(message.author.mention) )
     
     elif (message.content.lower().startswith('ok boomer')):
-        await message.channel.send(file = discord.File('res/ok_boomer.jpg'))
+        await message.channel.send(file = discord.File('res/ok_boomer.jpg') )
 
     elif ('bot' in message.content.lower() and message.author != bot.user):
         await message.channel.send("Hey {}! U wanna talk to me?".format(message.author.mention))
@@ -221,7 +221,7 @@ async def on_member_remove(member):
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, CommandNotFound):
-        await ctx.channel.send("Sorry " + ctx.message.author.mention + "! I still don't know that command 😞\nTry `>help` to see what I can do.")
+        await ctx.channel.send("Sorry {} ! I still don't know that command 😞\nTry `>help` to see what I can do.".format( ctx.message.author.mention) )
 
 bot.run(tokens[2])
 #nothing will run after this command ;)
