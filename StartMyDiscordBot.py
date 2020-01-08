@@ -227,4 +227,5 @@ bot.run(tokens[2])
 #nothing will run after this command ;)
 
 # TODO : set_permissions()
-#TODO : add timed messages when nobody is chatting
+# TODO : add timed messages when nobody is chatting
+# TODO : add remider when nobody is chatting
