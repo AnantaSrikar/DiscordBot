@@ -124,72 +124,6 @@ async def send_ind_news(ctx):
     async with ctx.channel.typing():
         await ctx.channel.send(indianNews())
 
-@bot.command(name = 'members')
-async def send_members_list(ctx):
-    members = ctx.channel.members
-    memberText = 'There are {} members in {}.\nThey are :\n'.format(len(members), ctx.guild.name)
-    async with ctx.channel.typing():
-        for i in range (0, len(members)):
-            memberText += members[i].mention + '\n'
-        await ctx.channel.send(memberText)
-
-@bot.command(name = 'admins')
-async def send_admins_list(ctx):
-    async with ctx.channel.typing():
-        adminsText = 'The admins of {} are :\n'.format(ctx.guild.name)
-        for i in range (0, len(ctx.channel.members)):
-            if (ctx.channel.permissions_for(ctx.channel.members[i]).administrator):
-                adminsText += ctx.channel.members[i].mention + '\n'
-        await ctx.channel.send(adminsText)
-
-@bot.command(name = 'owner')
-async def send_owner(ctx):
-    await ctx.channel.send('{} owns me. Literally!'.format(owner.mention))
-
-@bot.command(name = 'ban')
-@has_permissions(ban_members = True)
-async def ban_member(ctx, target : discord.Member, *, reason = None):
-    if (ctx.channel.permissions_for(target).administrator):
-        await ctx.channel.send("Sorry, {} is an Admin".format(target.mention))
-    else:
-        try:
-            await target.ban(reason = reason)
-            await ctx.channel.send("Banned {}".format(target.mention))
-        
-        except:
-            await ctx.channel.send("Something went wrong")
-
-@ban_member.error
-async def ban_error(ctx, error):
-    if isinstance(error, CheckFailure):
-        await ctx.channel.send("You do not have permissions to ban members")
-    elif isinstance(error, BadArgument):
-        await ctx.channel.send("Could not identify target")
-    else:
-        raise error
-
-@bot.command(name = 'kick')
-@has_permissions(kick_members = True)
-async def kick_member(ctx, target : discord.Member, *, reason = None):
-    if (ctx.channel.permissions_for(target).administrator):
-        await ctx.channel.send("Sorry, {} is an Admin".format(target.mention) )
-    else:
-        try:
-            await target.ban(reason = reason)
-            await ctx.channel.send("Banned {}".format(target.mention) )
-        
-        except:
-            await ctx.channel.send("Something went wrong")
-
-@kick_member.error
-async def kick_error(ctx, error):
-    if isinstance(error, CheckFailure):
-        await ctx.channel.send("You do not have permissions to kick members")
-    elif isinstance(error, BadArgument):
-        await ctx.channel.send("Could not identify target")
-    else:
-        raise error
-
 @bot.event
 async def on_message(message):
     
@@ -222,6 +156,9 @@ async def on_member_remove(member):
 async def on_command_error(ctx, error):
     if isinstance(error, CommandNotFound):
         await ctx.channel.send("Sorry {} ! I still don't know that command 😞\nTry `>help` to see what I can do.".format( ctx.message.author.mention) )
+
+bot.load_extension('cogs.testCog')
+bot.load_extension  ('cogs.managementCog')
 
 bot.run(tokens[2])
 #nothing will run after this command ;)
