@@ -5,7 +5,6 @@ from discord.ext.commands import has_permissions, CheckFailure, BadArgument
 class mgmtCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.owner = getOwnerInfo(self.bot)
     
     @commands.command(name = 'members')
     async def send_members_list(self, ctx):
@@ -24,10 +23,6 @@ class mgmtCog(commands.Cog):
                 if (ctx.channel.permissions_for(ctx.channel.members[i]).administrator):
                     adminsText += ctx.channel.members[i].mention + '\n'
             await ctx.channel.send(adminsText)
-
-    @commands.command(name = 'owner')
-    async def send_owner(self, ctx):
-        await ctx.channel.send('{} owns me. Literally!'.format(self.owner.mention))
 
     @commands.command(name = 'ban')
     @has_permissions(ban_members = True)
@@ -77,7 +72,7 @@ def setup(bot):
     bot.add_cog(mgmtCog(bot))
 
 async def getOwnerInfo(bot):
-    if(not hasattr(self.bot, 'appInfo')):
-        bot.appInfo = await self.bot.application_info()
-
+    if(not hasattr(bot, 'appInfo')):
+        bot.appInfo = await bot.application_info()
+    print('got owner info : {}'.format(bot.appInfo.owner))
     return  bot.appInfo.owner
