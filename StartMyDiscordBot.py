@@ -123,6 +123,10 @@ async def send_int_news(ctx):
 async def send_ind_news(ctx):
     async with ctx.channel.typing():
         await ctx.channel.send(indianNews())
+    
+@bot.command(name = 'owner')
+async def send_owner(ctx):
+    await ctx.channel.send('{} owns me. Literally!'.format(owner.mention))
 
 @bot.event
 async def on_message(message):
