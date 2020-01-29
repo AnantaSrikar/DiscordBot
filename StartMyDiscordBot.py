@@ -11,6 +11,8 @@ import requests
 
 tokens = []
 
+users = []
+
 owner_id = 605674719731253263
 owner = discord.user.User
 
@@ -19,6 +21,10 @@ def getTokens():
     tokenText = fileManager.read()
     global tokens
     tokens = tokenText.split('\n')
+
+def addDNDuser(user):
+    fileManager = open('res/dndUsers', 'r')
+    
 
 def NewsFromBBC(): 
 
@@ -145,7 +151,8 @@ async def on_message(message):
             await message.channel.send(file = discord.File('res/ok_boomer.jpg') )
 
         elif ('bot' in msg):
-            await message.channel.send("Hey {}! U wanna talk to me?".format(message.author.mention))
+            if message.author not in users:
+                await message.channel.send("Hey {}! U wanna talk to me?".format(message.author.mention))
         
         elif ('bye' in msg):
             await message.channel.send('Goodbye {}'.format(message.author.mention))
@@ -153,7 +160,14 @@ async def on_message(message):
         if(message.author == owner):
             #print('My owner has sent a message!') ---> do something which owner only has access to
             pass # don't forget to remove this after adding a function
-        
+
+        if(msg.startswith('yes') or msg.startswith('yeah')):
+            await message.channel.send("That's awesome {}! So send me some commands. (I can't really chat, you know that right?)".format(message.author.mention))
+
+        elif(msg.startswith('no')):
+            await message.channel.send("Ok, I'll remember that.")
+            users.append(message.author)
+
         await bot.process_commands(message)
 
 @bot.event
