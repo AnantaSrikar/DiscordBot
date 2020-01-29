@@ -134,6 +134,15 @@ async def send_ind_news(ctx):
 async def send_owner(ctx):
     await ctx.channel.send('{} owns me. Literally!'.format(owner.mention))
 
+@bot.command(name = 'removeDnd')
+async def remove_dnd(ctx):
+    if (ctx.author in users):
+        await ctx.channel.send("Done! Successfully removed you from the DND list")
+        users.remove(ctx.author)
+    
+    else:
+        await ctx.channel.send("Wait what? You're not in the DND list anyways")
+
 @bot.event
 async def on_message(message):
 
