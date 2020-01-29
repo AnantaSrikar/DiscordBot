@@ -171,6 +171,6 @@ bot.load_extension  ('cogs.managementCog')
 bot.run(tokens[2])
 #nothing will run after this command ;)
 
-# TODO : set_permissions()
+# TODO : set_permissions() if command is sent by admin
 # TODO : add timed messages when nobody is chatting
 # TODO : mute members on a channel
