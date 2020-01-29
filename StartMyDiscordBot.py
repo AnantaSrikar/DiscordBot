@@ -130,27 +130,31 @@ async def send_owner(ctx):
 
 @bot.event
 async def on_message(message):
-    
-    if ((message.content.lower().startswith('hi') or message.content.lower().startswith('hey') or message.content.lower().startswith('sup')) and message.author != bot.user) :
-        await message.channel.send("Wassup {}".format(message.author.mention) )   # never directly do message.channel.send() as it will go to infinity loop
-    
-    elif ((message.content.lower().startswith('gn') or 'good night' in message.content.lower()) and message.author != bot.user):
-        await message.channel.send("Good Night {}".format(message.author.mention) )
-    
-    elif (message.content.lower().startswith('ok boomer')):
-        await message.channel.send(file = discord.File('res/ok_boomer.jpg') )
 
-    elif ('bot' in message.content.lower() and message.author != bot.user):
-        await message.channel.send("Hey {}! U wanna talk to me?".format(message.author.mention))
-    
-    elif ('bye' in message.content.lower() and message.author != bot.user):
-        await message.channel.send('Goodbye {}'.format(message.author.mention))
+    msg = message.content.lower()
 
-    if(message.author == owner):
-        #print('My owner has sen a message!') ---> do something which owner only has access to
-        pass # don't forget to remove this after adding a function
-    
-    await bot.process_commands(message)
+    if(message.author != bot.user):
+
+        if ((msg.startswith('hi') or msg.startswith('hey') or msg.startswith('sup'))) :
+            await message.channel.send("Wassup {}".format(message.author.mention))   # never directly do message.channel.send() as it will go to infinity loop
+        
+        elif ((msg.startswith('gn') or 'good night' in msg)):
+            await message.channel.send("Good Night {}".format(message.author.mention) )
+        
+        elif (msg.startswith('ok boomer')):
+            await message.channel.send(file = discord.File('res/ok_boomer.jpg') )
+
+        elif ('bot' in msg):
+            await message.channel.send("Hey {}! U wanna talk to me?".format(message.author.mention))
+        
+        elif ('bye' in msg):
+            await message.channel.send('Goodbye {}'.format(message.author.mention))
+
+        if(message.author == owner):
+            #print('My owner has sent a message!') ---> do something which owner only has access to
+            pass # don't forget to remove this after adding a function
+        
+        await bot.process_commands(message)
 
 @bot.event
 async def on_member_remove(member):
