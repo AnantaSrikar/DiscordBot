@@ -197,3 +197,4 @@ bot.run(tokens[2])
 # TODO : set_permissions() if command is sent by admin
 # TODO : add timed messages when nobody is chatting
 # TODO : mute members on a channel
+# TODO : log off when said to 
