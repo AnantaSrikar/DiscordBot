@@ -31,8 +31,8 @@ class mgmtCog(commands.Cog):
             await ctx.channel.send("Sorry, {} is an Admin".format(target.mention))
         else:
             try:
-                await target.ban(reason = reason)
                 await ctx.channel.send("Banned {}".format(target.mention))
+                await target.ban(reason = reason)
         
             except:
                 await ctx.channel.send("Something went wrong")
@@ -53,8 +53,8 @@ class mgmtCog(commands.Cog):
             await ctx.channel.send("Sorry, {} is an Admin".format(target.mention) )
         else:
             try:
-                await target.ban(reason = reason)
-                await ctx.channel.send("Banned {}".format(target.mention) )
+                await ctx.channel.send("Kicked {}".format(target.mention))
+                await target.kick(reason = reason)
         
             except:
                 await ctx.channel.send("Something went wrong")
@@ -70,9 +70,3 @@ class mgmtCog(commands.Cog):
 
 def setup(bot):
     bot.add_cog(mgmtCog(bot))
-
-async def getOwnerInfo(bot):
-    if(not hasattr(bot, 'appInfo')):
-        bot.appInfo = await bot.application_info()
-    print('got owner info : {}'.format(bot.appInfo.owner))
-    return  bot.appInfo.owner
