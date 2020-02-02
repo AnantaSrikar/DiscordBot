@@ -148,7 +148,7 @@ async def on_message(message):
 
     msg = message.content.lower()
 
-    if(message.author != bot.user):
+    if(message.author != bot.user and not(message.author.bot)):
 
         if ((msg.startswith('hi') or msg.startswith('hey') or msg.startswith('sup'))) :
             await message.channel.send("Wassup {}".format(message.author.mention))   # never directly do message.channel.send() as it will go to infinity loop
