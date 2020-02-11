@@ -199,4 +199,3 @@ bot.run(tokens[2])
 # TODO : add timed messages when nobody is chatting
 # TODO : Fix bug when someone says yeah
 # TODO : mute members on a channel
-# TODO : log off when said to 
