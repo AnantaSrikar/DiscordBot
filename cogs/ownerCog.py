@@ -5,11 +5,6 @@ from asyncio import sleep
 class ownerCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
-    @commands.command('ownerCog')
-    async def tester(self, ctx):
-        print("In the command")
-        await ctx.channel.send('Good news {}! Owner Cogs are working just fine'.format(ctx.message.author.mention))
     
     @commands.command('logout')
     @commands.is_owner()
