@@ -189,12 +189,14 @@ async def on_command_error(ctx, error):
         await ctx.channel.send("Sorry {} ! I still don't know that command 😞\nTry `>help` to see what I can do.".format( ctx.message.author.mention) )
 
 bot.load_extension('cogs.testCog')
-bot.load_extension  ('cogs.managementCog')
+bot.load_extension('cogs.managementCog')
+bot.load_extension('cogs.ownerCog')
 
 bot.run(tokens[2])
 #nothing will run after this command ;)
 
 # TODO : set_permissions() if command is sent by admin
 # TODO : add timed messages when nobody is chatting
+# TODO : Fix bug when someone says yeah
 # TODO : mute members on a channel
 # TODO : log off when said to 
