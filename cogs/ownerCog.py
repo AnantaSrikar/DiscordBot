@@ -15,12 +15,19 @@ class ownerCog(commands.Cog):
         await self.bot.logout()
         print("Logged out successfully")
 
-    @commands.command('offload')
+    @commands.command('invisible')
     @commands.is_owner()
     async def go_offline(self, ctx):
         await ctx.channel.send("Going invisible")
         await self.bot.change_presence(status = discord.Status.offline)
         print("Gone invisible")
+
+    @commands.command('visible')
+    @commands.is_owner()
+    async def come_visible(self, ctx):
+        await ctx.channel.send("Coming back right away")
+        await self.bot.change_presence(status = discord.Status.online)
+        print("Back online")
 
 def setup(bot):
     bot.add_cog(ownerCog(bot))

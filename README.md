@@ -13,6 +13,8 @@ Made using [discord.py](https://pypi.org/project/discord.py/) API. Still in deve
 * `>kick @mention reason` - Kick the mentioned member
 * `>ban  @mention reason` - Ban the mentioned user
 * `>logout`  - The bot logs out
+* `>invisible` : The Bot goes invisible
+* `>visible` : The Bot comes back visible
 
 Notifies user leaving server. Can recognise its owner.
 
