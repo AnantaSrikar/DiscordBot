@@ -7,7 +7,9 @@ ALPHA = FEATURES MAY NOT WORK
 `>owner`   : Get my owner
 `>kick @mention reason` : Kick the mentioned user
 `>ban @mention reason` : Ban the mentioned user
-`>logout`  : The bot logs out 
+`>logout`  : The bot logs out
+`>invisible` : bot goes invisible
+`>visible` : bot comes back visible
 Notifies member leaving server
 Note : `You need to have permissions in the channel for ban or kick to work`
 Any Suggestions, contact Srikar
