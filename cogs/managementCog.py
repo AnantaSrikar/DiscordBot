@@ -67,6 +67,15 @@ class mgmtCog(commands.Cog):
             await ctx.channel.send("Could not identify target")
         else:
             raise error
+        
+    @commands.command(name = 'mute')
+    async def mute_user(self, ctx, member : discord.Member):
+        role = discord.utils.get(ctx.guild.roles, name = "Muted")
+        if(role == None):
+            await ctx.channel.send('I have to be updated to make a muted role')
+        else:
+            await member.add_roles(role)
+            await ctx.channel.send('Muted {}'.format(member.mention))
 
 def setup(bot):
     bot.add_cog(mgmtCog(bot))
