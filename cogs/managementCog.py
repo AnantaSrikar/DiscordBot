@@ -42,7 +42,7 @@ class mgmtCog(commands.Cog):
         if isinstance(error, CheckFailure):
             await ctx.channel.send("You do not have permissions to ban members")
         elif isinstance(error, BadArgument):
-            await ctx.channel.send("Could not identify target")
+            await ctx.channel.send("Could not identify member")
         else:
             raise error
 
@@ -64,11 +64,12 @@ class mgmtCog(commands.Cog):
         if isinstance(error, CheckFailure):
             await ctx.channel.send("You do not have permissions to kick members")
         elif isinstance(error, BadArgument):
-            await ctx.channel.send("Could not identify target")
+            await ctx.channel.send("Could not identify member")
         else:
             raise error
         
     @commands.command(name = 'mute')
+    @has_permissions(administrator = True)
     async def mute_user(self, ctx, member : discord.Member):
         role = discord.utils.get(ctx.guild.roles, name = "Muted")
         if(role == None):
@@ -76,6 +77,13 @@ class mgmtCog(commands.Cog):
         else:
             await member.add_roles(role)
             await ctx.channel.send('Muted {}'.format(member.mention))
+
+    @mute_user.error
+    async def mute_errors(self, ctx, error):
+        if isinstance(error, CheckFailure):
+            await ctx.channel.send('You do not have the permission to mute members')
+        elif isinstance(error, BadArgument):
+            await ctx.channel.send("Coudn't identify member")
 
 def setup(bot):
     bot.add_cog(mgmtCog(bot))
