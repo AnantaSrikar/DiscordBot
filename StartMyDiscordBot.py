@@ -196,6 +196,7 @@ bot.run(tokens[2])
 #nothing will run after this command ;)
 
 # TODO : set_permissions() if command is sent by admin
+# TODO : add unban
 # TODO : add timed messages when nobody is chatting
 # TODO : Fix bug when someone says yeah
 # TODO : mute members on a channel
