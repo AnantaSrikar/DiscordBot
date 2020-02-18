@@ -9,10 +9,23 @@ class mgmtCog(commands.Cog):
     @commands.command(name = 'members')
     async def send_members_list(self, ctx):
         members = ctx.channel.members
-        memberText = 'There are {} members in {}.\nThey are :\n'.format(len(members), ctx.guild.name)
+        bots = []
+        for member in members:
+            if(member.bot):
+                bots.append(member)
+                members.remove(member)
+
+        memberText = 'There are {} members and {} bots in {}.\nThe members are :\n'.format(len(members), len(bots), ctx.guild.name)
+        
+        for member in members:
+            memberText += member.mention + '\n'        
+        
+        memberText += '\nThe bots are :\n'
+        
+        for bot in bots:
+            memberText += bot.mention + '\n'
+
         async with ctx.channel.typing():
-            for i in range (0, len(members)):
-                memberText += members[i].mention + '\n'
             await ctx.channel.send(memberText)
 
     @commands.command(name = 'admins')
