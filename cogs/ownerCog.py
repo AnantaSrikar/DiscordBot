@@ -21,13 +21,22 @@ class ownerCog(commands.Cog):
         await ctx.channel.send("Going invisible")
         await self.bot.change_presence(status = discord.Status.offline)
         print("Gone invisible")
+    
+    @go_offline.error
+    async def offline_error(self, ctx, error):
+        if isinstance(error, commands.CheckFailure):
+            await ctx.channel.send("You are not the owner of the bot. Only owners can use this command. To find out my owner, use `>owner`")
 
     @commands.command('visible')
     @commands.is_owner()
     async def come_visible(self, ctx):
         await ctx.channel.send("Coming back right away")
         await self.bot.change_presence(status = discord.Status.online)
-        print("Back online")
+
+    @come_visible.error
+    async def online_error(self, ctx, error):
+        if isinstance(error, commands.CheckFailure):
+            await ctx.channel.send("You are not the owner of the bot. Only owners can use this command. To find out my owner, use `>owner`")
 
 def setup(bot):
     bot.add_cog(ownerCog(bot))
