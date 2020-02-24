@@ -8,6 +8,7 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import has_permissions, CheckFailure, BadArgument, CommandNotFound
 import requests
+import os
 
 tokens = []
 
@@ -15,6 +16,8 @@ users = []
 
 owner_id = 605674719731253263
 owner = discord.user.User
+
+os.chdir(os.path.dirname(os.path.abspath(__file__))) #making the file work from anywhere
 
 def getTokens():
     fileManager = open('res/TOKENS.txt', 'r')  #make the file in such a way that token[0] is for news, token[1] for weather, token[2] for bot
@@ -162,6 +165,10 @@ async def on_message(message):
         elif ('bot' in msg):
             if message.author not in users:
                 await message.channel.send("Hey {}! U wanna talk to me?".format(message.author.mention))
+                if(not hasattr(bot, 'appInfo')):
+                    bot.appInfo = await bot.application_info()    
+                    global owner
+                    owner = bot.appInfo.owner  #add something here
         
         elif ('bye' in msg):
             await message.channel.send('Goodbye {}'.format(message.author.mention))
@@ -200,3 +207,4 @@ bot.run(tokens[2])
 # TODO : add timed messages when nobody is chatting
 # TODO : Fix bug when someone says yeah
 # TODO : mute members on a channel
+# TODO : add dnd members to a file
