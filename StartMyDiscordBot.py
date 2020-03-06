@@ -198,6 +198,7 @@ async def on_command_error(ctx, error):
 bot.load_extension('cogs.testCog')
 bot.load_extension('cogs.managementCog')
 bot.load_extension('cogs.ownerCog')
+bot.load_extension('cogs.covCog')
 
 bot.run(tokens[2])
 #nothing will run after this command ;)
