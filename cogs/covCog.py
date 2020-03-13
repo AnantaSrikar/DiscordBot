@@ -27,12 +27,11 @@ def getInfo():
         for i in range(len(dataList)):
             dataList[i] += 1
         updateDataList()
-
-        return retDataPDF()
-
+        
     else:
         fetchFromURL(False)
-        return retDataPDF()
+
+    return retDataPDF()
 
 def fetchFromURL(adder):
     if(adder):

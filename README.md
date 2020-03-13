@@ -2,6 +2,7 @@
 Made using [discord.py](https://pypi.org/project/discord.py/) API. Still in development, Hosted on my Raspberry Pi 4.
 
 # Functions
+LATEST! NEW! `>covid` : Corona Virus update in India! (support will be extended soon!)
 * `>start` - To check if the bot is still awake
 * `>help`  - To check what all the bot can do
 * `>weatherUpdate cityName ` - Gives the current weather in the city u input

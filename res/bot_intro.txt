@@ -1,4 +1,5 @@
-ALPHA = FEATURES MAY NOT WORK
+Below are the commands I understand
+LATEST! NEW! `>covid` : Corona Virus update in India! (support will be extended soon!)
 `>weatherUpdate cityName` : Current weather in any city!
 `>intNews` : Top International News
 `>indNews` : Top Indian News
