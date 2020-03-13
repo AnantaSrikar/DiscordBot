@@ -2,8 +2,8 @@ import discord
 from discord.ext import commands
 import requests
 import PyPDF2
-#TODO : url = 'https://www.who.int/docs/default-source/coronaviruse/situation-reports/202003{}-sitrep-{}-covid-19.pdf'.format(d, n)
-url = 'https://www.who.int/docs/default-source/coronaviruse/20200312-sitrep-52-covid-19.pdf'
+
+dataList = []
 
 class covCog(commands.Cog):
     def __init__(self, bot):
@@ -11,7 +11,6 @@ class covCog(commands.Cog):
 
     @commands.command('covid')
     async def tester(self, ctx):
-        #await ctx.channel.send('Stay tuned {}! COVID-19 update feature coming up soon.'.format(ctx.message.author.mention))
         await ctx.channel.send(getInfo())
 
 def setup(bot):
@@ -19,28 +18,74 @@ def setup(bot):
 
 def getInfo():
 
-    try:
-        myfile = requests.get(url)
-        open('res/testfile.pdf', 'wb').write(myfile.content)
-        pdfFileObj = open('res/testfile.pdf', 'rb')
-        pdfReader = PyPDF2.PdfFileReader(pdfFileObj) 
-        pageObj = pdfReader.getPage(4)
-        data = pageObj.extractText()
-        simplifiedData = data.split('\n')
+    global dataList
+    getDataList()
 
-        emptySpace = ' '
-        for emptySpace in simplifiedData:
-            try:
-                simplifiedData.remove(' ')
-            except ValueError:
-                pass
-        indiaIndex = simplifiedData.index('India')
-        textdata = 'Data for India :\n' + 'Total Confirmed Cases = {}\nTotal Confirmed new cases = {}\nTotal Deaths = {}\nTotal new Deaths = {}\nTransmission Classification : {}\nDays since last report case : {}'.format(simplifiedData[indiaIndex + 1], simplifiedData[indiaIndex + 2], simplifiedData[indiaIndex + 3], simplifiedData[indiaIndex + 4], simplifiedData[indiaIndex + 5], simplifiedData[indiaIndex + 6])
-        #dataFile = open('data.txt', 'r')
-        pdfFileObj.close()
+    fetchFromURL(True)
+
+    if(isPDF()):
+        for i in range(len(dataList)):
+            dataList[i] += 1
+        updateDataList()
+
+        return retDataPDF()
+
+    else:
+        fetchFromURL(False)
+        return retDataPDF()
+
+def fetchFromURL(adder):
+    if(adder):
+        url = 'https://www.who.int/docs/default-source/coronaviruse/202003{}-sitrep-{}-covid-19.pdf'.format(dataList[0] + 1, dataList[1] + 1)
+    else:
+        url = 'https://www.who.int/docs/default-source/coronaviruse/202003{}-sitrep-{}-covid-19.pdf'.format(dataList[0], dataList[1])
+    myfile = requests.get(url)
+    open('res/testfile.pdf', 'wb').write(myfile.content)    
+
+def getDataList():
+    fileManager = open('res/urlData.txt', 'r')
+    dataText = fileManager.read()
+    global dataList
+    dataList = dataText.split('\n')
+    for i in range(len(dataList)):
+        try:
+            dataList[i] = int(dataList[i])
+        except ValueError:
+            pass
+
+def updateDataList():
+    fileManager = open('res/urlData.txt', 'w')
+    dataText = ''
+    global dataList
+    for i in range(len(dataList)):
+        dataText = dataText + str(dataList[i]) + '\n'
+    fileManager.write(dataText)
+    fileManager.close()
+
+def retDataPDF():
     
-        return textdata
-        #print(pdfReader.numPages)
+    pdfFileObj = open('res/testfile.pdf', 'rb')
+    pdfReader = PyPDF2.PdfFileReader(pdfFileObj) 
+    pageObj = pdfReader.getPage(4)
+    data = pageObj.extractText()
+    simplifiedData = data.split('\n')
+    
+    emptySpace = ' '
+    for emptySpace in simplifiedData:
+        try:
+            simplifiedData.remove(' ')
+        except ValueError:
+            pass
+    indiaIndex = simplifiedData.index('India')
+    textdata = 'Data for India :\n' + 'Total Confirmed Cases = {}\nTotal Confirmed new cases = {}\nTotal Deaths = {}\nTotal new Deaths = {}\nTransmission Classification : {}\nDays since last report case : {}'.format(simplifiedData[indiaIndex + 1], simplifiedData[indiaIndex + 2], simplifiedData[indiaIndex + 3], simplifiedData[indiaIndex + 4], simplifiedData[indiaIndex + 5], simplifiedData[indiaIndex + 6])
+    pdfFileObj.close()
 
+    return textdata
+    #print(pdfReader.numPages)
+def isPDF():
+    try:
+        pdfFileObj = open('res/testfile.pdf', 'rb')
+        pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+        return True
     except PyPDF2.utils.PdfReadError:
-        return ('Todays not yet released')
+        return False
