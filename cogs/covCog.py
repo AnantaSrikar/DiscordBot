@@ -3,7 +3,7 @@ from discord.ext import commands
 import requests
 import PyPDF2
 #TODO : url = 'https://www.who.int/docs/default-source/coronaviruse/situation-reports/202003{}-sitrep-{}-covid-19.pdf'.format(d, n)
-url = 'https://www.who.int/docs/default-source/coronaviruse/situation-reports/20200309-sitrep-49-covid-19.pdf'
+url = 'https://www.who.int/docs/default-source/coronaviruse/20200312-sitrep-52-covid-19.pdf'
 
 class covCog(commands.Cog):
     def __init__(self, bot):
