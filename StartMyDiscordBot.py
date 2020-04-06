@@ -12,22 +12,13 @@ import os
 
 tokens = []
 
-users = []
-
-owner_id = 605674719731253263
-owner = discord.user.User
-
 os.chdir(os.path.dirname(os.path.abspath(__file__))) #making the file work from anywhere
 
 def getTokens():
 	fileManager = open('res/TOKENS.txt', 'r')  #make the file in such a way that token[0] is for news, token[1] for weather, token[2] for bot
 	tokenText = fileManager.read()
 	global tokens
-	tokens = tokenText.split('\n')
-
-def addDNDuser(user):
-	fileManager = open('res/dndUsers', 'r')
-	
+	tokens = tokenText.split('\n')	
 
 def NewsFromBBC(): 
 
@@ -137,15 +128,6 @@ async def send_ind_news(ctx):
 async def send_owner(ctx):
 	await ctx.channel.send('{} owns me. Literally!'.format(owner.mention))
 
-@bot.command(name = 'removeDnd')
-async def remove_dnd(ctx):
-	if (ctx.author in users):
-		await ctx.channel.send("Done! Successfully removed you from the DND list")
-		users.remove(ctx.author)
-	
-	else:
-		await ctx.channel.send("Wait what? You're not in the DND list anyways")
-
 @bot.event
 async def on_message(message):
 
@@ -159,16 +141,8 @@ async def on_message(message):
 		elif ((msg.startswith('gn') or 'good night' in msg)):
 			await message.channel.send("Good Night {}".format(message.author.mention) )
 		
-		elif (msg.startswith('ok boomer')):
+		elif ('boomer' in msg):
 			await message.channel.send(file = discord.File('res/ok_boomer.jpg') )
-
-		elif ('bot' in msg):
-			if message.author not in users:
-				await message.channel.send("Hey {}! U wanna talk to me?".format(message.author.mention))
-				if(not hasattr(bot, 'appInfo')):
-					bot.appInfo = await bot.application_info()    
-					global owner
-					owner = bot.appInfo.owner  #add something here
 		
 		elif ('bye' in msg):
 			await message.channel.send('Goodbye {}'.format(message.author.mention))
@@ -176,13 +150,6 @@ async def on_message(message):
 		if(message.author == owner):
 			#print('My owner has sent a message!') ---> do something which owner only has access to
 			pass # don't forget to remove this after adding a function
-
-		if(msg.startswith('yes') or msg.startswith('yeah')):
-			await message.channel.send("That's awesome {}! So send me some commands. (I can't really chat, you know that right?)".format(message.author.mention))
-
-		elif(msg.startswith('no')):
-			await message.channel.send("Ok, I'll remember that.")
-			users.append(message.author)
 
 		await bot.process_commands(message)
 
@@ -208,4 +175,3 @@ bot.run(tokens[2])
 # TODO : add timed messages when nobody is chatting
 # TODO : Fix bug when someone says yeah
 # TODO : mute members on a channel
-# TODO : add dnd members to a file
