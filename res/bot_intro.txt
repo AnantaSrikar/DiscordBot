@@ -11,7 +11,6 @@ Below are the commands I understand
 `>ban @mention reason` : Ban the mentioned user
 `>mute @mention` : Mutes the mentioned user
 
-
 Note : `You need to have permissions in the channel for ban or kick to work`
 Any Suggestions, contact Srikar
 Bot by Srikar
