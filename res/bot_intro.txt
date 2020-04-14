@@ -1,5 +1,6 @@
 Below are the commands I understand
-LATEST! NEW! `>covid` : Corona Virus update in India! (support will be extended soon!)
+`>covid` : COVID-19 update in India! Data from CovIndia.com
+`>covidState` : COVID-19 update state-by-state
 `>weatherUpdate cityName` : Current weather in any city!
 `>intNews` : Top International News
 `>indNews` : Top Indian News
@@ -9,10 +10,8 @@ LATEST! NEW! `>covid` : Corona Virus update in India! (support will be extended 
 `>kick @mention reason` : Kick the mentioned user
 `>ban @mention reason` : Ban the mentioned user
 `>mute @mention` : Mutes the mentioned user
-`>logout`  : The bot logs out
-`>invisible` : bot goes invisible
-`>visible` : bot comes back visible
-Notifies member leaving server
+
+
 Note : `You need to have permissions in the channel for ban or kick to work`
 Any Suggestions, contact Srikar
 Bot by Srikar

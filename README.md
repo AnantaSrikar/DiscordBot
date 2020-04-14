@@ -2,7 +2,8 @@
 Made using [discord.py](https://pypi.org/project/discord.py/) API. Still in development, Hosted on my Raspberry Pi 4.
 
 # Functions
-LATEST! NEW! `>covid` : Corona Virus update in India! (support will be extended soon!)
+* `>covid` : COVID-19 update in India! Data from CovIndia.com
+* `>covidState` : COVID-19 update state-by-state
 * `>start` - To check if the bot is still awake
 * `>help`  - To check what all the bot can do
 * `>weatherUpdate cityName ` - Gives the current weather in the city u input
@@ -31,3 +32,4 @@ Below are the list of APIs used in the discord bot:
 * [discord.py](https://pypi.org/project/discord.py/) - The main API for the bot
 * [News API](https://newsapi.org/) - API for latest news
 * [OpenWeather](https://openweathermap.org/api) - API for latest weather
+* [CovIndia](https://covindia.com) - API for COVID-19 data
