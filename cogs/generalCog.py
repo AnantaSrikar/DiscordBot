@@ -7,6 +7,7 @@ from utils.generalFuncs import return_weather, NewsFromBBC, indianNews
 class generalCog(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
+		self.subChannel = []
 
 	@commands.command(name = 'start')
 	async def ping(self, ctx):
@@ -36,18 +37,23 @@ class generalCog(commands.Cog):
 		async with ctx.channel.typing():
 			await ctx.channel.send(indianNews())
 
-	@commands.command(name = 'startxkcd')  # Thanks Raghav. Asyncio is the best indeed. So is XKCD
+	@commands.command(name = 'xkcd')  # Thanks Raghav. Asyncio is the best indeed. So is XKCD
 	async def startXKCD(self, ctx):
-		await ctx.channel.send("XKCD hourly service coming up")
-		l = [i for i in range(1, 2300, 1)]
-		shuffle(l)
-		while(len(l) > 0):
-			index = randint(0, len(l))
-			number = l[index]
-			l.pop(index)
-			url = "https://xkcd.com/" + str(number)
-			await ctx.channel.send("@everyone here's you xkcd for the hour : " + url)
-			await sleep(60 * 60)
+		if([ctx.guild, ctx.channel] in self.subChannel):
+			await ctx.channel.send("Already subscribed, wait for the next meme ;)")
+		
+		else:
+			self.subChannel.append([ctx.guild, ctx.channel])
+			await ctx.channel.send("XKCD service coming up")
+			l = [i for i in range(1, 2300, 1)]
+			shuffle(l)
+			while(len(l) > 0):
+				index = randint(0, len(l))
+				number = l[index]
+				l.pop(index)
+				url = "https://xkcd.com/" + str(number)
+				await ctx.channel.send("@everyone here's you xkcd for the hour : " + url)
+				await sleep(60 * 60 * 4)
 
 	@commands.command(name = 'owner')
 	async def send_owner(self, ctx):

@@ -1,6 +1,7 @@
 Below are the commands I understand
 `>covid` : COVID-19 update in India! Data from CovIndia.com
 `>covidState` : COVID-19 update state-by-state
+`>xkcd` : Get XKCD memes once in 4 hours
 `>weatherUpdate cityName` : Current weather in any city!
 `>intNews` : Top International News
 `>indNews` : Top Indian News
