@@ -52,7 +52,7 @@ class generalCog(commands.Cog):
 				number = l[index]
 				l.pop(index)
 				url = "https://xkcd.com/" + str(number)
-				await ctx.channel.send("@everyone here's you xkcd for the hour : " + url)
+				await ctx.channel.send("@everyone here's your xkcd : " + url)
 				await sleep(60 * 60 * 4)
 
 	@commands.command(name = 'owner')
