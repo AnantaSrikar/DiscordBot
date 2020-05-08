@@ -1,5 +1,7 @@
 import discord 
 from discord.ext import commands
+from random import shuffle, randint
+from asyncio import sleep
 from utils.generalFuncs import return_weather, NewsFromBBC, indianNews
 
 class generalCog(commands.Cog):
@@ -33,6 +35,19 @@ class generalCog(commands.Cog):
 	async def send_ind_news(self, ctx):
 		async with ctx.channel.typing():
 			await ctx.channel.send(indianNews())
+
+	@commands.command(name = 'startxkcd')  # Thanks Raghav. Asyncio is the best indeed. So is XKCD
+	async def startXKCD(self, ctx):
+		await ctx.channel.send("XKCD hourly service coming up")
+		l = [i for i in range(1, 2300, 1)]
+		shuffle(l)
+		while(len(l) > 0):
+			index = randint(0, len(l))
+			number = l[index]
+			l.pop(index)
+			url = "https://xkcd.com/" + str(number)
+			await ctx.channel.send("@everyone here's you xkcd for the hour : " + url)
+			await sleep(60 * 60)
 
 	@commands.command(name = 'owner')
 	async def send_owner(self, ctx):
