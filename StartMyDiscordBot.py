@@ -9,20 +9,17 @@ from discord.ext import commands
 from discord.ext.commands import has_permissions, CheckFailure, BadArgument, CommandNotFound
 import requests
 import os
-
-tokens = []
+from json import load
 
 os.chdir(os.path.dirname(os.path.abspath(__file__))) #making the file work from anywhere
 
-def getTokens():
-	fileManager = open('res/TOKENS.txt', 'r')  #make the file in such a way that token[0] is for news, token[1] for weather, token[2] for bot
-	tokenText = fileManager.read()
-	global tokens
-	tokens = tokenText.split('\n')	
+def tokens():
+	with open("res/TOKENS.json", 'r') as FPtr:
+		return load(FPtr)
 
 def NewsFromBBC(): 
 
-	main_url = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey={}".format(tokens[0])
+	main_url = tokens()["int_news_url"]
  
 	open_bbc_page = requests.get(main_url).json() 
  
@@ -41,7 +38,7 @@ def NewsFromBBC():
 
 def indianNews():
 	
-	main_url = "https://newsapi.org/v2/top-headlines?country=in&apiKey={}".format(tokens[0])
+	main_url = tokens()["ind_news_url"]
 
 	news = requests.get(main_url).json()
 
@@ -59,7 +56,7 @@ def indianNews():
 	return data
 
 def return_weather(city):
-	url = 'http://api.openweathermap.org/data/2.5/weather?q={}&appid={}&units=metric'.format(city, tokens[1])
+	url = 'http://api.openweathermap.org/data/2.5/weather?q={}&appid={}&units=metric'.format(city, tokens()["weather_token"])
 
 	res = requests.get(url)
 
@@ -75,9 +72,6 @@ def return_weather(city):
 		data = 'Please enter a valid city name'
 
 	return data
-
-getTokens()
-maker_mention = tokens[3]  #for mentioning ones own self, get the mention sting. Ex : <@605674719731253263>
 
 bot = commands.Bot(command_prefix='>')
 bot.remove_command("help")
@@ -101,7 +95,7 @@ async def helpHim(ctx):
 	async with ctx.channel.typing():
 		fileManager = open('res/bot_intro.txt', 'r')
 		bot_intro = fileManager.read()
-		bot_intro = bot_intro.replace('Srikar', maker_mention)
+		bot_intro = bot_intro.replace('Srikar', owner.mention)
 		fileManager.close()
 		await ctx.channel.send(bot_intro)
 
@@ -167,7 +161,7 @@ bot.load_extension('cogs.managementCog')
 bot.load_extension('cogs.ownerCog')
 bot.load_extension('cogs.covCog')
 
-bot.run(tokens[2])
+bot.run(tokens()["bot_token"])
 #nothing will run after this command ;)
 
 # TODO : set_permissions() if command is sent by admin
