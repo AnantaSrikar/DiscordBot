@@ -29,3 +29,4 @@ bot.run(tokens()["bot_token"])
 # TODO : add timed messages when nobody is chatting
 # TODO : Fix bug when someone says yeah
 # TODO : mute members on a channel
+# TODO : command to unsubscribe from xkcd
