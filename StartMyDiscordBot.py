@@ -20,6 +20,7 @@ bot.load_extension('cogs.ownerCog')
 bot.load_extension('cogs.covCog')
 bot.load_extension('cogs.generalCog')
 bot.load_extension('cogs.eventsCog')
+bot.load_extension('cogs.musicCog')
 
 bot.run(tokens()["bot_token"])
 #nothing will run after this command ;)
