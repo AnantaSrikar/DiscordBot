@@ -25,11 +25,11 @@ class messageHandler(commands.Cog):
 	@commands.command('test_voice')
 	async def test_voice(self, ctx):
 		try:
-			source = discord.FFmpegOpusAudio.from_probe("res/Faded.mp3")
+			source = await discord.FFmpegOpusAudio.from_probe("res/Faded.mp3")
 			await ctx.voice_client.play(source)
 			await ctx.channel.send('Playing song now')
 		except Exception as e:
-			print("Fatality : {}".format(e))
+			print("Error occured. Exception : {}".format(e))
 	
 	
 	@commands.command('leave_voice')
