@@ -14,13 +14,13 @@ os.chdir(os.path.dirname(os.path.abspath(__file__))) # Making the file work from
 bot = Bot(command_prefix='>')
 bot.remove_command("help")
 
-bot.load_extension('cogs.testCog')
-bot.load_extension('cogs.managementCog')
-bot.load_extension('cogs.ownerCog')
-bot.load_extension('cogs.covCog')
-bot.load_extension('cogs.generalCog')
-bot.load_extension('cogs.eventsCog')
-bot.load_extension('cogs.musicCog')
+for (root, dirs, files) in os.walk('cogs'):
+	if(root == 'cogs'):
+		cogNames = files
+
+for cogName in cogNames:
+	cogName = cogName.replace('.py', '')
+	bot.load_extension('cogs.' + cogName)
 
 bot.run(tokens()["bot_token"])
 #nothing will run after this command ;)
