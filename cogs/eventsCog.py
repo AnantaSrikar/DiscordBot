@@ -19,6 +19,11 @@ class Events(commands.Cog):
 
 		msg = message.content.lower()
 
+		# For the opponent, XD bot
+
+		if (message.author.name == 'xD'):
+			await message.channel.send("{} you are so dead XD".format(message.author.mention))
+
 		if(message.author != self.bot.user and not(message.author.bot)):
 
 			if ((msg.startswith('hi') or msg.startswith('hey') or msg.startswith('sup'))) :

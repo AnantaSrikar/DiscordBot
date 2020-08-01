@@ -18,7 +18,7 @@ class mgmtCog(commands.Cog):
 		memberText = 'There are {} members and {} bots in {}.\nThe members are :\n'.format(len(members), len(bots), ctx.guild.name)
 		
 		for member in members:
-			memberText += member.mention + '\n'        
+			memberText += member.mention + '\n'
 		
 		memberText += '\nThe bots are :\n'
 		
